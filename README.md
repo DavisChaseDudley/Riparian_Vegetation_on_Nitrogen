@@ -6,3 +6,4 @@ Data Description: TBD
 Citations: TBD
 Signatures and Team Name: 
 Davis Chase Dudley
+Ricardo Monsalve
