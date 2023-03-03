@@ -1,6 +1,6 @@
 # Riparian_Vegetation_on_Nitrogen
  
-Title: TBD
+Title: The Effect of Riparian Vegetative Growth on the Nitrogen Content of Interfacing Surface Water
 
 Hypothesis Description: TBD
 
