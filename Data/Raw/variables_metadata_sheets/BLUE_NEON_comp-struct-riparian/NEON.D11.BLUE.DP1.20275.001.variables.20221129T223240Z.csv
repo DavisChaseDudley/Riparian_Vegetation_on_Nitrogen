@@ -1,0 +1,59 @@
+table,fieldName,description,dataType,units,downloadPkg,pubFormat,primaryKey,categoricalCodeName
+rip_assessment,uid,"Unique ID within NEON database; an identifier for the record",string,NA,basic,"asIs",N,
+rip_assessment,domainID,"Unique identifier of the NEON domain",string,NA,basic,"asIs",N,
+rip_assessment,siteID,"NEON site code",string,NA,basic,"asIs",N,
+rip_assessment,namedLocation,"Name of the measurement location in the NEON database",string,NA,basic,"asIs",N,
+rip_assessment,eventID,"An identifier for the set of information associated with the event, which includes information about the place and time of the event",string,NA,basic,"asIs",Y,
+rip_assessment,samplingImpractical,"Samples and/or measurements were not collected due to the indicated circumstance",string,NA,basic,"LOV",N,"samplingImpractical"
+rip_assessment,replicateNumber,"The number for the sample replicate",integer,NA,basic,"integer",Y,
+rip_assessment,decimalLatitude,"The geographic latitude (in decimal degrees, WGS84) of the geographic center of the reference area",real,decimalDegree,basic,"*.######(round)",N,
+rip_assessment,decimalLongitude,"The geographic longitude (in decimal degrees, WGS84) of the geographic center of the reference area",real,decimalDegree,basic,"*.######(round)",N,
+rip_assessment,geodeticDatum,"Model used to measure horizontal position on the earth",string,NA,basic,"asIs",N,
+rip_assessment,coordinateUncertainty,"The horizontal distance (in meters) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Location. Zero is not a valid value for this term",real,meter,basic,"*.#(round)",N,
+rip_assessment,elevation,"Elevation (in meters) above sea level",real,meter,basic,"*.#(round)",N,
+rip_assessment,elevationUncertainty,"Uncertainty in elevation values (in meters)",real,meter,basic,"*.#(round)",N,
+rip_assessment,startDate,"The start date-time or interval during which an event occurred",dateTime,NA,basic,"yyyy-MM-dd'T'HH:mm'Z'(floor)",N,
+rip_assessment,samplingProtocolVersion,"The NEON document number and version where detailed information regarding the sampling method used is available; format NEON.DOC.######vX",string,NA,basic,"LOV",N,"rip.samplingProtocolVersion"
+rip_assessment,riparianWaterDepth,"Water depth at riparian assessment location",real,centimeter,basic,"*.#(round)",N,
+rip_assessment,wettedWidth,"Width of the wetted stream at time of measurement",real,meter,basic,"*.##(round)",N,
+rip_assessment,bankLR,"Left or right bank of a stream or river",string,NA,basic,"LOV",N,"rip.bankLR"
+rip_assessment,boatToShoreDist,"Distance between the observer in the boat and shore",real,meter,basic,"*.#(round)",N,
+rip_assessment,estVisibilityDist,"Visible distance in meters from bank or shore to end of riparian transect",string,NA,basic,"LOV",N,"rip.visibility"
+rip_assessment,riparianSubsystem,"Abbreviation for riparian subsystem",string,NA,basic,"LOV",N,"aquaticSiteType"
+rip_assessment,riparianClass,"Abbreviation for vegetation class",string,NA,basic,"LOV",N,"rip.class"
+rip_assessment,riparianSubclass,"Abbreviation for vegetation subclass",string,NA,basic,"LOV",N,"rip.subclass"
+rip_assessment,riparianDominantVegetation,"Plant code for dominant vegetation",string,NA,basic,"asIs",N,
+rip_assessment,scientificName,"Scientific name, associated with the taxonID. This is the name of the lowest level taxonomic rank that can be determined",string,NA,basic,"asIs",N,
+rip_assessment,bigTreeType,"Vegetation type for trees greater than 0.3 m diameter at breast height (DBH)",string,NA,basic,"LOV",N,"rip.vegType"
+rip_assessment,bigTreeCoverClass,"Vegetation cover class for trees greater than 0.3 m diameter at breast height (DBH)",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,smallTreeType,"Vegetation type for trees less than 0.3 m diameter at breast height (DBH)",string,NA,basic,"LOV",N,"rip.vegType"
+rip_assessment,smallTreeCoverClass,"Vegetation cover class for trees less than 0.3 m diameter at breast height (DBH)",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,woodyShrubSaplingType,"Vegetation type for woody shrubs and saplings",string,NA,basic,"LOV",N,"rip.vegType"
+rip_assessment,woodyShrubSaplingCoverClass,"Vegetation cover class for woody shrubs and saplings",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,tallHerbType,"Vegetation type for tall herbs, grasses and forbs",string,NA,basic,"LOV",N,"rip.vegType"
+rip_assessment,tallHerbCoverClass,"Vegetation cover class for tall herbs, grasses and forbs",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,woodyShrubGroundCoverClass,"Vegetation cover class for woody shrubs and saplings in ground cover",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,shortHerbCoverClass,"Vegetation cover class for short herbs, grasses and forbs",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,standingWaterCoverClass,"Cover class of standing water",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,bareDirtCoverClass,"Cover class of bare dirt",string,NA,basic,"LOV",N,"rip.coverClass"
+rip_assessment,buildingPresence,"Presence or absence of buildings in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,roadPresence,"Presence or absence of roads in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,boatRampPresence,"Presence or absence of boat ramps in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,lawnsParksPresence,"Presence or absence of lawns or parks in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,agriculturePresence,"Presence or absence of agricultural activities in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,industryPresence,"Presence or absence of industrial activities in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,pavementPresence,"Presence or absence of paved areas in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,trashPresence,"Presence or absence of trash in a riparian transect",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,adjacentAreaLeftRemarks,"Free form comments describing adjacent area on river left",string,NA,basic,"asIs",N,
+rip_assessment,adjacentAreaRightRemarks,"Free form comments describing adjacent area on river right",string,NA,basic,"asIs",N,
+rip_assessment,dominantBankAngle,"Dominant bank angle",string,NA,basic,"LOV",N,"rip.bankAngle"
+rip_assessment,subdominantBankAngle,"Subdominant bank angle",string,NA,basic,"LOV",N,"rip.bankAngle"
+rip_assessment,bankUndercut,"A yes or no indication of whether or not a bank edge is undercut",string,NA,basic,"LOV",N,"Yes or No choice"
+rip_assessment,dominantBankRevetment,"Dominant bank revetment",string,NA,basic,"LOV",N,"rip.bankRevetment"
+rip_assessment,subdominantBankRevetment,"Subdominant bank revetment",string,NA,basic,"LOV",N,"rip.bankRevetment"
+rip_assessment,dominantBankTexture,"Dominant bank texture",string,NA,basic,"LOV",N,"rip.bankTexture"
+rip_assessment,subdominantBankTexture,"Subdominant bank texture",string,NA,basic,"LOV",N,"rip.bankTexture"
+rip_assessment,remarks,"Technician notes; free text comments accompanying the record",string,NA,basic,"asIs",N,
+rip_assessment,collectedBy,"An identifier for the technician who collected the sample or specimen",string,NA,basic,"asIs",N,
+rip_assessment,recordedBy,"An identifier for the technician who recorded the data",string,NA,basic,"asIs",N,
+rip_assessment,dataQF,"Data quality flag",string,NA,basic,"asIs",N,

@@ -1,0 +1,25 @@
+table,fieldName,description,dataType,units,downloadPkg,pubFormat,primaryKey,categoricalCodeName
+rip_percentComposition,uid,"Unique ID within NEON database; an identifier for the record",string,NA,basic,"asIs",N,
+rip_percentComposition,domainID,"Unique identifier of the NEON domain",string,NA,basic,"asIs",N,
+rip_percentComposition,siteID,"NEON site code",string,NA,basic,"asIs",N,
+rip_percentComposition,namedLocation,"Name of the measurement location in the NEON database",string,NA,basic,"asIs",N,
+rip_percentComposition,eventID,"An identifier for the set of information associated with the event, which includes information about the place and time of the event",string,NA,basic,"asIs",Y,
+rip_percentComposition,samplingImpractical,"Samples and/or measurements were not collected due to the indicated circumstance",string,NA,basic,"LOV",N,"samplingImpractical"
+rip_percentComposition,replicateNumber,"The number for the sample replicate",integer,NA,basic,"integer",Y,
+rip_percentComposition,decimalLatitude,"The geographic latitude (in decimal degrees, WGS84) of the geographic center of the reference area",real,decimalDegree,basic,"*.######(round)",N,
+rip_percentComposition,decimalLongitude,"The geographic longitude (in decimal degrees, WGS84) of the geographic center of the reference area",real,decimalDegree,basic,"*.######(round)",N,
+rip_percentComposition,geodeticDatum,"Model used to measure horizontal position on the earth",string,NA,basic,"UPPER",N,
+rip_percentComposition,coordinateUncertainty,"The horizontal distance (in meters) from the given decimalLatitude and decimalLongitude describing the smallest circle containing the whole of the Location. Zero is not a valid value for this term",real,meter,basic,"*.#(round)",N,
+rip_percentComposition,elevation,"Elevation (in meters) above sea level",real,meter,basic,"*.#(round)",N,
+rip_percentComposition,elevationUncertainty,"Uncertainty in elevation values (in meters)",real,meter,basic,"*.#(round)",N,
+rip_percentComposition,startDate,"The start date-time or interval during which an event occurred",dateTime,NA,basic,"yyyy-MM-dd'T'HH:mm'Z'(floor)",N,
+rip_percentComposition,samplingProtocolVersion,"The NEON document number and version where detailed information regarding the sampling method used is available; format NEON.DOC.######vX",string,NA,basic,"LOV",N,"rip.samplingProtocolVersion"
+rip_percentComposition,measurementLocation,"Location of the technician for making a measurement",string,NA,basic,"LOV",N,"rip.riparianLocation"
+rip_percentComposition,measurementDirection,"Direction of the technician for making a measurement",string,NA,basic,"LOV",Y,"rip.riparianDirection"
+rip_percentComposition,totalDensiometerPoints,"Total number of points on the densiometer",unsigned integer,number,basic,"integer",N,
+rip_percentComposition,coveredDensiometerPoints,"Number of points on the densiometer covered by canopy",unsigned integer,number,basic,"integer",N,
+rip_percentComposition,canopyCoverPercent,"Percent canopy cover",real,percent,basic,"*.#(round)",N,
+rip_percentComposition,remarks,"Technician notes; free text comments accompanying the record",string,NA,basic,"asIs",N,
+rip_percentComposition,collectedBy,"An identifier for the technician who collected the sample or specimen",string,NA,basic,"obfuscate",N,
+rip_percentComposition,recordedBy,"An identifier for the technician who recorded the data",string,NA,basic,"obfuscate",N,
+rip_percentComposition,dataQF,"Data quality flag",string,NA,basic,"asIs",N,
