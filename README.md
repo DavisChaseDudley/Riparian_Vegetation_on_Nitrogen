@@ -2,7 +2,7 @@
  
 Title: The Effect of Riparian Vegetative Growth on the Nitrogen Content of Interfacing Surface Water
 
-Hypothesis Description: Our hypothesis involves the relationship between riparian vegetation density (RVD) and nitrogen content/concentration of surface water. Specifically, whether or not increases in riparian vegetation yeild measurable differences in runoff limitation and therefore measurable influences in the nitrogen concentrations of bodies of water in proximity to the respective riparian zone. We hypothesize that: if a riparian zone of a given area has a greater surface area/density of vegetation, then the less runoff-depositing of nutrients (nitrogen) nearby bodies of water will experience such that concentrations of nitrogen in those surface waters will be lower. 
+Hypothesis Description: Our hypothesis involves the relationship between riparian vegetation density (RVD) and nitrogen content/concentration of surface water. Specifically, whether or not increases in riparian vegetation yield measurable differences in runoff limitation and therefore measurable influences in the nitrogen concentrations of bodies of water in proximity to the respective riparian zone. We hypothesize that: if a riparian zone of a given area has a greater surface area/density of vegetation, then the less runoff-depositing of nutrients (nitrogen) nearby bodies of water will experience such that concentrations of nitrogen in those surface waters will be lower. 
 
 Data Description: 
 
