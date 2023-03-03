@@ -4,7 +4,9 @@ Title: TBD
 
 Hypothesis Description: TBD
 
-Data Description: TBD
+Data Description: 
+
+The data that we plan to use to test our hypothesis is sourced from three unique aquatic NEON field sites (namely, LeConte Creek, TN [LECO], Blue River, OK [BLUE], and Upper Big Creek, CA [BIGC]) across two different years (2019 and 2021). More specifically, we've drawn from a total of four different data products. Two products (NEON_comp-struct-riparian and NEON_cover-veg-riparian) contain information on the vegetative cover and composition of riparian zones within each site, and the other two (NEON_nitrate-surfacewater and NEON_chem-surfacewater) contain measures of the nitrate concentration and, more generally, the chemical analyte concentrations (including a broader range of nitrogenous compounds) of surface water in riparian zones. Using the densiometer data and class-assorted coverage measurements of the former two, paired with the nitrate and broader nitrogenous analyte concentrations measured in the latter two, we can begin to determine whether or not there is a relationship between riparian vegetative density/coverage and the the nitrogen content of interfacing surface water.
 
 Citations: 
 
