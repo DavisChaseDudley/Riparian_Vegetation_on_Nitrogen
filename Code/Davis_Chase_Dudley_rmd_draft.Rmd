@@ -16,6 +16,8 @@ install.packages("ggplot2")
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(readr)
+library(lubridate)
 
 ```
 
@@ -27,10 +29,13 @@ Code Template:
 
 ```{r Code Template}
 
-Nitrate_BIGC <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
+Nitrate_BIGC_2019 <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
 
-VegCover_BIGC <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
+VegCover_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
 
+CompStruct_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_comp-struct-riparian/NEON.D17.BIGC.DP1.20275.001.rip_assessment.2019-07.basic.20221128T182237Z.csv")
+
+ChemSurf_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_chem-surfacewater/NEON.D17.BIGC.DP1.20093.001.swc_externalLabDataByAnalyte.2019-07.basic.20221215T171932Z.csv")
 
 ```
 
