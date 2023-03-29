@@ -1,0 +1,37 @@
+---
+title: "GP"
+author: "Jack D'Antonio"
+date: "2023-03-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(lubridate)
+```
+
+
+
+
+
+
+{Insert Name} <-read_csv("../Data/Processed/FILE_NAME_FOR_SITE/FILE_NAME_FOR_DATA_TYPE/EXCEL_SHEET_NAME.csv")
+
+
+```{r Code Template}
+Nitrate_BIGC <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
+VegCover_BIGC <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
