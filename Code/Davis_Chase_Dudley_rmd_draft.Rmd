@@ -7,6 +7,18 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r import packages}
+
+install.packages("dplyr")
+install.packages("tidyr")
+install.packages("ggplot2")
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+```
+
 
 Code Template:
 
