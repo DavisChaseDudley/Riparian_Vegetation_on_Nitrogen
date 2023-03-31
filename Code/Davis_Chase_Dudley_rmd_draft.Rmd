@@ -41,7 +41,7 @@ ChemSurf_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_chem-s
 
 ```
 
-```{r data hub}
+```{r data hub Nitrate and VegCover}
 
 #BIGC_2019
 
@@ -89,66 +89,66 @@ VegCover_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-v
 
 
 
-```{r plot generation}
+```{r mean data code format}
 
 Nitrate_BIGC_2019 %>%
   drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc = mean(surfWaterNitrateMean))
+  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
 
 
 Nitrate_BIGC_2021 %>%
   drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc = mean(surfWaterNitrateMean))
+  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
 
 
 Nitrate_BLUE_2019 %>%
   drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc = mean(surfWaterNitrateMean))
+  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
 
 
 Nitrate_BLUE_2021 %>%
   drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc = mean(surfWaterNitrateMean))
+  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
 
 
 Nitrate_LECO_2019 %>%
   drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc = mean(surfWaterNitrateMean))
+  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
 
 
 Nitrate_LECO_2021 %>%
   drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc = mean(surfWaterNitrateMean))
+  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
 
 
 VegCover_BIGC_2019 %>%
   drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc = mean(canopyCoverPercent))
+  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
 
 
 VegCover_BIGC_2021 %>%
   drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc = mean(canopyCoverPercent))
+  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
 
 
 VegCover_BLUE_2019 %>%
   drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc = mean(canopyCoverPercent))
+  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
 
 
 VegCover_BLUE_2021 %>%
   drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc = mean(canopyCoverPercent))
+  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
 
 
 VegCover_LECO_2019 %>%
   drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc = mean(canopyCoverPercent))
+  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
 
 
 VegCover_LECO_2021 %>%
   drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc = mean(canopyCoverPercent))
+  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
 
 
 ```
