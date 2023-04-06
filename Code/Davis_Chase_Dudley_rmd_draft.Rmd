@@ -87,6 +87,57 @@ VegCover_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-v
 Chunk 3 ^^^
 
 
+```{r Compile Data into Single Data Frame}
+
+#Nitrate Data Consolidation (Total, then mean surfWaterNitrateMean grouped by SiteID and year)
+Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE_2019, Nitrate_BLUE_2021, Nitrate_LECO_2019, Nitrate_LECO_2021)
+
+Mean_Nitrate_Combined <- Nitrate_Combined %>% 
+  drop_na() %>% 
+  group_by(siteID, year) %>% 
+  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean))
+
+
+#VegCover Data Consolidation (Total, then mean canopyCoverPercent grouped by SiteID and year)
+VegCover_Combined <- bind_rows(VegCover_BIGC_2019, VegCover_BIGC_2021, VegCover_BLUE_2019, VegCover_BLUE_2021, VegCover_LECO_2019, VegCover_LECO_2021)
+
+Mean_VegCover_Combined <- VegCover_Combined %>% 
+  group_by(siteID, year) %>% 
+  summarize(mean_veg_cover = mean(canopyCoverPercent))
+
+
+#Summary Data Frame (with corresponding mean values)
+Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
+
+
+
+#Raw 'surfWaterNitrateMean' and 'canopyCoverPercent' columns for Histogram
+Total_Nitrate_Conc_Combined <- Nitrate_Combined %>% 
+  select(surfWaterNitrateMean)
+
+Total_VegCover_Combined <- VegCover_Combined %>% 
+  select(canopyCoverPercent)
+
+
+```
+Chunk 4^^^
+
+```{r Histogram}
+
+Total_Nitrate_Conc_Combined %>%
+  ggplot(aes(x=surfWaterNitrateMean))+
+  geom_histogram()
+
+Total_VegCover_Combined %>%
+  ggplot(aes(x=canopyCoverPercent))+
+  geom_histogram()
+
+
+```
+Chunk 5^^^
+
+
+
 
 ```{r Data Frame For Graphical Analysis}
 
@@ -108,7 +159,7 @@ Mean_VegCover_Combined <- VegCover_Combined %>%
 Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
 
 ```
-Chunk 4^^^
+Chunk 6^^^
 
 
 
