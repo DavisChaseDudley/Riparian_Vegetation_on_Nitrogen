@@ -137,8 +137,6 @@ Total_VegCover_Combined %>%
 Chunk 5^^^
 
 
-
-
 ```{r Data Frame For Graphical Analysis}
 
 Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE_2019, Nitrate_BLUE_2021, Nitrate_LECO_2019, Nitrate_LECO_2021)
@@ -162,6 +160,37 @@ Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
 Chunk 6^^^
 
 
+
+
+```{r Rough Draft Graphs}
+
+#Bar Graph
+Master_Data_Frame %>%
+  drop_na()%>%
+  group_by(siteID, year)%>%
+  ggplot(aes(x=mean_veg_cover, y=mean_conc_nitrate, fill = siteID))+
+  geom_col(position="dodge")
+
+#Scatter Plot
+Master_Data_Frame %>%
+  ggplot(aes(x=mean_veg_cover, y=mean_conc_nitrate))+
+  geom_point()+
+  geom_smooth(method ="lm")+
+  theme_classic()
+
+
+#ANOVA
+
+ANOVA_Model <- aov(mean_conc_nitrate~mean_veg_cover, data = Master_Data_Frame)
+summary(ANOVA_Model)
+
+#Linear Model
+
+Linear_Model <- lm(mean_conc_nitrate~mean_veg_cover, data = Master_Data_Frame)
+summary(Linear_Model)
+plot(Linear_Model)
+
+```
 
 
 
