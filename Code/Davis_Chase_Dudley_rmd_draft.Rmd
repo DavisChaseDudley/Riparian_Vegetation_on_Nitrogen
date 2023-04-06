@@ -136,11 +136,12 @@ VLECO2021Mean <- VegCover_LECO_2021 %>%
   summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
 
 
-Mean_Nitrate_Combined <- bind_cols(NBIGC2019Mean, NBIGC2021Mean, NBLUE2019Mean, NBLUE2021Mean, NLECO2019Mean, NLECO2021Mean)
+Mean_Nitrate_Combined <- bind_rows(NBIGC2019Mean, NBIGC2021Mean, NBLUE2019Mean, NBLUE2021Mean, NLECO2019Mean, NLECO2021Mean)
 
-Mean_VegCover_Combined <- bind_cols(VBIGC2019Mean, VBIGC2021Mean, VBLUE2019Mean, VBLUE2021Mean, VLECO2019Mean, VLECO2021Mean)
+Mean_VegCover_Combined <- bind_rows(VBIGC2019Mean, VBIGC2021Mean, VBLUE2019Mean, VBLUE2021Mean, VLECO2019Mean, VLECO2021Mean)
 
 Master_Data_Frame <- bind_cols(Mean_Nitrate_Combined, Mean_VegCover_Combined)
+
 
 ```
 Chunk 4^^^
@@ -336,79 +337,13 @@ VegCover_LECO_select_2021 <- VegCover_LECO_2021 %>%
   select(canopyCoverPercent)
 
 
-BIGC_Nitrate_Combined <- bind_cols(Nitrate_BIGC_select_2019, Nitrate_BIGC_select_2021)
+Total_VegCover_Combined <- bind_cols(VegCover_BIGC_select_2019, VegCover_BIGC_select_2021, VegCover_BLUE_select_2019, VegCover_BLUE_select_2021, VegCover_LECO_select_2019, VegCover_LECO_select_2021)
 
-```
+Total_VegCover_Combined_One_Col <- bind_rows(VegCover_BIGC_select_2019, VegCover_BIGC_select_2021, VegCover_BLUE_select_2019, VegCover_BLUE_select_2021, VegCover_LECO_select_2019, VegCover_LECO_select_2021)
 
+Total_Nitrate_Combined_One_Col <- bind_rows(Nitrate_BIGC_select_2019, Nitrate_BIGC_select_2021, Nitrate_BLUE_select_2019, Nitrate_BLUE_select_2021, Nitrate_LECO_select_2019, Nitrate_LECO_select_2021)
 
-
-```{r mean data code format}
-
-NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
-
-
-NBIGC2021Mean <- Nitrate_BIGC_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
-
-
-NBLUE2019Mean <- Nitrate_BLUE_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
-
-
-NBLUE2021Mean <- Nitrate_BLUE_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
-
-
-NLECO2019Mean <- Nitrate_LECO_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
-
-
-NLECO2021Mean <- Nitrate_LECO_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
-
-
-VBIGC2019Mean <- VegCover_BIGC_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
-
-
-VBIGC2021Mean <- VegCover_BIGC_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
-
-
-VBLUE2019Mean <- VegCover_BLUE_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
-
-
-VBLUE2021Mean <- VegCover_BLUE_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
-
-
-VLECO2019Mean <- VegCover_LECO_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
-
-
-VLECO2021Mean <- VegCover_LECO_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
-
-
-Mean_Nitrate_Combined <- bind_cols(NBIGC2019Mean, NBIGC2021Mean, NBLUE2019Mean, NBLUE2021Mean, NLECO2019Mean, NLECO2021Mean)
-
-Mean_VegCover_Combined <- bind_cols(VBIGC2019Mean, VBIGC2021Mean, VBLUE2019Mean, VBLUE2021Mean, VLECO2019Mean, VLECO2021Mean)
-
-Master_Data_Frame <- bind_cols(Mean_Nitrate_Combined, Mean_VegCover_Combined)
+Master_Sheet_Total <- bind_cols(Total_VegCover_Combined_One_Col, Total_Nitrate_Combined_One_Col)
 
 ```
 
