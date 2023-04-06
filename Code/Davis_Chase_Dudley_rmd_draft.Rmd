@@ -74,11 +74,91 @@ VegCover_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-v
 Chunk 3 ^^^
 
 
+```{r mean data code format}
+
+NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
+
+
+NBIGC2021Mean <- Nitrate_BIGC_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
+
+
+NBLUE2019Mean <- Nitrate_BLUE_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
+
+
+NBLUE2021Mean <- Nitrate_BLUE_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
+
+
+NLECO2019Mean <- Nitrate_LECO_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
+
+
+NLECO2021Mean <- Nitrate_LECO_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
+
+
+VBIGC2019Mean <- VegCover_BIGC_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
+
+
+VBIGC2021Mean <- VegCover_BIGC_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
+
+
+VBLUE2019Mean <- VegCover_BLUE_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
+
+
+VBLUE2021Mean <- VegCover_BLUE_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
+
+
+VLECO2019Mean <- VegCover_LECO_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
+
+
+VLECO2021Mean <- VegCover_LECO_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
+
+
+Mean_Nitrate_Combined <- bind_cols(NBIGC2019Mean, NBIGC2021Mean, NBLUE2019Mean, NBLUE2021Mean, NLECO2019Mean, NLECO2021Mean)
+
+Mean_VegCover_Combined <- bind_cols(VBIGC2019Mean, VBIGC2021Mean, VBLUE2019Mean, VBLUE2021Mean, VLECO2019Mean, VLECO2021Mean)
+
+Master_Data_Frame <- bind_cols(Mean_Nitrate_Combined, Mean_VegCover_Combined)
+
+```
+Chunk 4^^^
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+DRAFT WORK BELOW____________________
 
 
 Code Template:
@@ -148,7 +228,7 @@ VegCover_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-v
 
 ```{r mean data code format}
 
-Nitrate_BIGC_2019 %>%
+NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
   drop_na(surfWaterNitrateMean) %>% 
   summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
 
@@ -259,4 +339,77 @@ VegCover_LECO_select_2021 <- VegCover_LECO_2021 %>%
 BIGC_Nitrate_Combined <- bind_cols(Nitrate_BIGC_select_2019, Nitrate_BIGC_select_2021)
 
 ```
+
+
+
+```{r mean data code format}
+
+NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
+
+
+NBIGC2021Mean <- Nitrate_BIGC_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
+
+
+NBLUE2019Mean <- Nitrate_BLUE_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
+
+
+NBLUE2021Mean <- Nitrate_BLUE_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
+
+
+NLECO2019Mean <- Nitrate_LECO_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
+
+
+NLECO2021Mean <- Nitrate_LECO_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
+
+
+VBIGC2019Mean <- VegCover_BIGC_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
+
+
+VBIGC2021Mean <- VegCover_BIGC_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
+
+
+VBLUE2019Mean <- VegCover_BLUE_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
+
+
+VBLUE2021Mean <- VegCover_BLUE_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
+
+
+VLECO2019Mean <- VegCover_LECO_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
+
+
+VLECO2021Mean <- VegCover_LECO_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
+
+
+Mean_Nitrate_Combined <- bind_cols(NBIGC2019Mean, NBIGC2021Mean, NBLUE2019Mean, NBLUE2021Mean, NLECO2019Mean, NLECO2021Mean)
+
+Mean_VegCover_Combined <- bind_cols(VBIGC2019Mean, VBIGC2021Mean, VBLUE2019Mean, VBLUE2021Mean, VLECO2019Mean, VLECO2021Mean)
+
+Master_Data_Frame <- bind_cols(Mean_Nitrate_Combined, Mean_VegCover_Combined)
+
+```
+
 
