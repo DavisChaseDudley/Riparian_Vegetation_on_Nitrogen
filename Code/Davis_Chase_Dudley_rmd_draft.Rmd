@@ -178,6 +178,8 @@ Chunk 6 ^^^
 
 ```{r Visualization 1: Scatter Plot}
 
+#In Chunk 7, we're visualizing our data using a scatter-plot equipped with a linear trendline in order to i) perform an analysis of our project data for interpretation and ii) to provide a standard visual of the collected data for potential readers. 
+
 #Scatter Plot
 Master_Data_Frame %>%
   ggplot(aes(x=mean_veg_cover, y=mean_conc_nitrate))+
@@ -187,11 +189,16 @@ Master_Data_Frame %>%
 
 
 ```
+Chunk 7 ^^^
 
+Figure 1: 
 
 
 
 ```{r Rough Draft Graphs}
+
+#In Chunk 8, we're visualizing our data using two separate bar-plots. The first represents the mean nitrate concentration (mean_conc_nitrate) separated by siteID (distinguishable by color) and faceted by year. The second represents the mean vegetation percent coverage (mean_veg_cover), also separated by siteID and faceted by year. These graphs are meant to provide an easily-interpreted visual for each respective measure to i) supplement our analysis and interpretation of our project data and ii) to provide a standard visual of the collected data for potential readers.
+
 
 #Bar Graph
 Master_Data_Frame %>%
@@ -211,6 +218,13 @@ Master_Data_Frame %>%
   facet_wrap("year")
 
 
+```
+Chunk 8 ^^^
+
+Figure 2:
+
+
+```{r tests}
 #ANOVA
 
 ANOVA_Model <- aov(mean_conc_nitrate~mean_veg_cover, data = Master_Data_Frame)
