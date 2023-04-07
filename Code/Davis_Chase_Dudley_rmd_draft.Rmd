@@ -1,5 +1,5 @@
 ---
-title: "The Effect of Riparian Vegetation Growth on the Nitrogen Content of Interfacing Surface Water"
+title: "The Effect of Riparian Vegetation Density on the Nitrogen Content of Surface Water"
 author: Davis Chase Dudley, Ricardo Monsalve, Jack D'Antonio
 output: html_document
 ---
@@ -157,6 +157,8 @@ Chunk 5 ^^^
 
 #In Chunk 6, we are creating data frames containing the summarized data necessary for visualization and analysis, specifically to facilitate the creation of figures by making all of the pertinent data immediately available in a single data frame. (Note: Much of this code is the same as that contained in Chunk 4; for the purposes of our project, it made sense to summarize our data prior to compilation, and as such, much of it already exists in a grouped and summarized format).
 
+
+#Nitrate Data Consolidation (Total, then mean surfWaterNitrateMean grouped by SiteID and year)
 Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE_2019, Nitrate_BLUE_2021, Nitrate_LECO_2019, Nitrate_LECO_2021)
 
 Mean_Nitrate_Combined <- Nitrate_Combined %>% 
@@ -165,13 +167,15 @@ Mean_Nitrate_Combined <- Nitrate_Combined %>%
   summarize(mean_conc_nitrate = mean(surfWaterNitrateMean))
 
 
-
+#VegCover Data Consolidation (Total, then mean canopyCoverPercent grouped by SiteID and year)
 VegCover_Combined <- bind_rows(VegCover_BIGC_2019, VegCover_BIGC_2021, VegCover_BLUE_2019, VegCover_BLUE_2021, VegCover_LECO_2019, VegCover_LECO_2021)
 
 Mean_VegCover_Combined <- VegCover_Combined %>% 
   group_by(siteID, year) %>% 
   summarize(mean_veg_cover = mean(canopyCoverPercent))
 
+
+#Summary Data Frame (with corresponding mean values)
 Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
 
 ```
