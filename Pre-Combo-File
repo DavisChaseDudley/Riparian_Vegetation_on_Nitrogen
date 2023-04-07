@@ -145,6 +145,8 @@ ggplot(Master_Data_Frame,
   labs(title = "Mean_VegCover_vs_Mean_Nitrate", x = "Mean_Veg_Cover", y = "Mean_Nitrate") # add axis labels and title
 
 ```
+Figure 2: Bar plot representing mean concentration of nitrate in surface water across three field sites (BIGC, BLUE, and LECO) in 2019 and 2021. Bar colors correlate with respective field site. Bars include error bars utilizing standard error.
+
 Figure 3: A scatterplot with regression line showing an inverse relationship between average Vegetation Cover Percent and average amount of Nitrate from the 4 NEON Datasites in years 2019-2021.  
 
 Chunk 8^^^
