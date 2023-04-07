@@ -100,7 +100,7 @@ Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE
 Mean_Nitrate_Combined <- Nitrate_Combined %>% 
   drop_na() %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean), standard_error = sd(surfWaterNitrateMean/sqrt(n())))
+  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean), standard_error_N = sd(surfWaterNitrateMean/sqrt(n())))
 
 
 #VegCover Data Consolidation (Total, then mean canopyCoverPercent grouped by SiteID and year)
@@ -108,7 +108,7 @@ VegCover_Combined <- bind_rows(VegCover_BIGC_2019, VegCover_BIGC_2021, VegCover_
 
 Mean_VegCover_Combined <- VegCover_Combined %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_veg_cover = mean(canopyCoverPercent), standard_error = sd(canopyCoverPercent/sqrt(n())))
+  summarize(mean_veg_cover = mean(canopyCoverPercent), standard_error_V = sd(canopyCoverPercent/sqrt(n())))
 
 
 #Summary Data Frame (with corresponding mean values)
@@ -158,7 +158,7 @@ Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE
 Mean_Nitrate_Combined <- Nitrate_Combined %>% 
   drop_na() %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean), standard_error = sd(surfWaterNitrateMean/sqrt(n())))
+  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean), standard_error_N = sd(surfWaterNitrateMean/sqrt(n())))
 
 
 #VegCover Data Consolidation (Total, then mean canopyCoverPercent grouped by SiteID and year)
@@ -166,7 +166,7 @@ VegCover_Combined <- bind_rows(VegCover_BIGC_2019, VegCover_BIGC_2021, VegCover_
 
 Mean_VegCover_Combined <- VegCover_Combined %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_veg_cover = mean(canopyCoverPercent), standard_error = sd(canopyCoverPercent/sqrt(n())))
+  summarize(mean_veg_cover = mean(canopyCoverPercent), standard_error_V = sd(canopyCoverPercent/sqrt(n())))
 
 
 #Summary Data Frame (with corresponding mean values)
@@ -184,7 +184,7 @@ Master_Data_Frame %>%
   group_by(siteID, year)%>%
   ggplot(aes(x=siteID, y=mean_conc_nitrate, fill = siteID))+
   geom_col(position="dodge")+
-  geom_errorbar(aes(ymin = mean_conc_nitrate - standard_error, ymax = mean_conc_nitrate + standard_error), width = .2)+
+  geom_errorbar(aes(ymin = mean_conc_nitrate - standard_error_N, ymax = mean_conc_nitrate + standard_error_N), width = .2)+
   facet_wrap("year")
 
 Master_Data_Frame %>%
@@ -192,7 +192,7 @@ Master_Data_Frame %>%
   group_by(siteID, year)%>%
   ggplot(aes(x=siteID, y=mean_veg_cover, fill = siteID))+
   geom_col(position="dodge")+
-  geom_errorbar(aes(ymin = mean_veg_cover - standard_error, ymax = mean_veg_cover + standard_error), width = .2)+
+  geom_errorbar(aes(ymin = mean_veg_cover - standard_error_V, ymax = mean_veg_cover + standard_error_V), width = .2)+
   facet_wrap("year")
 
 #Scatter Plot
