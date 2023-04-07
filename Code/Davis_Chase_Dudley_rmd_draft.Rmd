@@ -176,6 +176,21 @@ Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
 Chunk 6 ^^^
 
 
+```{r Visualization 1: Scatter Plot}
+
+#Scatter Plot
+Master_Data_Frame %>%
+  ggplot(aes(x=mean_veg_cover, y=mean_conc_nitrate))+
+  geom_point()+
+  geom_smooth(method ="lm", color = "red")+
+  theme_classic()
+
+
+```
+
+
+
+
 ```{r Rough Draft Graphs}
 
 #Bar Graph
@@ -194,13 +209,6 @@ Master_Data_Frame %>%
   geom_col(position="dodge")+
   geom_errorbar(aes(ymin = mean_veg_cover - standard_error_V, ymax = mean_veg_cover + standard_error_V), width = .2)+
   facet_wrap("year")
-
-#Scatter Plot
-Master_Data_Frame %>%
-  ggplot(aes(x=mean_veg_cover, y=mean_conc_nitrate))+
-  geom_point()+
-  geom_smooth(method ="lm")+
-  theme_classic()
 
 
 #ANOVA
