@@ -1,5 +1,6 @@
 ---
-title: "New (Draft Work)"
+title: "The Effect of Riparian Vegetation Growth on the Nitrogen Content of Interfacing Surface Water"
+author: Davis Chase Dudley, Ricardo Monsalve, Jack D'Antonio
 output: html_document
 ---
 
@@ -10,6 +11,8 @@ Chunk 1 ^^^
 
 
 ```{r import packages}
+
+#In Chunk 2, we're loading in the packages necessary to manipulate and process our data for further analysis.
 
 install.packages("dplyr")
 install.packages("tidyr")
@@ -28,6 +31,11 @@ Chunk 2 ^^^
 
 
 ```{r load data sets}
+
+#In Chunk 3, we're loading all of the raw NEON data sets that we're going to be using in our project, as well as tagging each with an appropriate siteID (derived from the NEON site wherein the data was collected) and a year (derived from the year within which the data was collected). 
+
+# (Note: Each set of data is preceded by a textual title (example: #BIGC_2019) to facilitate any necessary navigation).
+
 
 #BIGC_2019
 
@@ -89,6 +97,9 @@ Chunk 3 ^^^
 
 ```{r Compile Data into Single Data Frame}
 
+#In Chunk 4, all of the extraneous data from the raw data sheets is being excised, and the data pertaining to our project is being consolidated into multiple formats for further manipulation. These are detailed in pre-code titles below, but generally speaking, we are creating a data frame containing all of the 'surfWaterNitrateMean' data from the Nitrate_Surfacewater NEON data sheets and a separate frame containing all of the 'canopyCoverPercent' data from the Cover_Veg_Riparian NEON data sheets (these will be used in the creation of two single-variable histograms). We're then creating mean data for each of these consolidated data frames (grouped by siteID and year) before finally left_joining these mean data to create a summarized master data frame.
+
+
 #Nitrate Data Consolidation (Total, then mean surfWaterNitrateMean grouped by SiteID and year)
 Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE_2019, Nitrate_BLUE_2021, Nitrate_LECO_2019, Nitrate_LECO_2021)
 
@@ -113,6 +124,7 @@ Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
 
 #Raw 'surfWaterNitrateMean' and 'canopyCoverPercent' columns for Histogram
 Total_Nitrate_Conc_Combined <- Nitrate_Combined %>% 
+  drop_na() %>% 
   select(surfWaterNitrateMean)
 
 Total_VegCover_Combined <- VegCover_Combined %>% 
@@ -120,9 +132,13 @@ Total_VegCover_Combined <- VegCover_Combined %>%
 
 
 ```
-Chunk 4^^^
+Chunk 4 ^^^
+
 
 ```{r Histogram}
+
+# In Chunk 5, we're using the data frames containing the compiled 'surfWaterNitrateMean' and 'canopyCoverPercent' columns to create two single-variable histograms, each representative of one of our two continuous variables (both our response and our predictor variable)
+
 
 Total_Nitrate_Conc_Combined %>%
   ggplot(aes(x=surfWaterNitrateMean))+
@@ -134,10 +150,12 @@ Total_VegCover_Combined %>%
 
 
 ```
-Chunk 5^^^
+Chunk 5 ^^^
 
 
 ```{r Data Frame For Graphical Analysis}
+
+#In Chunk 6, we are creating data frames containing the summarized data necessary for visualization and analysis. (Note: Much of this code is the same as that contained in Chunk 4; for the purposes of our project, it made sense to summarize our data prior to compilation, and as such, much of it already exists in a grouped and summarized format).
 
 Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE_2019, Nitrate_BLUE_2021, Nitrate_LECO_2019, Nitrate_LECO_2021)
 
@@ -157,9 +175,7 @@ Mean_VegCover_Combined <- VegCover_Combined %>%
 Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
 
 ```
-Chunk 6^^^
-
-
+Chunk 6 ^^^
 
 
 ```{r Rough Draft Graphs}
@@ -200,16 +216,11 @@ plot(Linear_Model)
 
 
 
-
-
-
-Code Template Bank Below____________________
-
+Code Template Bank Below__________________________
 
 Code Template:
 
-{Insert Name} <-read_csv("../Data/Processed/FILE_NAME_FOR_SITE/FILE_NAME_FOR_DATA_TYPE/EXCEL_SHEET_NAME.csv")
-
+{Insert Name} \<-read_csv("../Data/Processed/FILE_NAME_FOR_SITE/FILE_NAME_FOR_DATA_TYPE/EXCEL_SHEET_NAME.csv")
 
 ```{r Code Template}
 
@@ -268,8 +279,6 @@ VegCover_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-v
 
 
 ```
-
-
 
 ```{r mean data code format}
 
@@ -337,10 +346,6 @@ VegCover_LECO_2021 %>%
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-
-
-
-
 WORK IN PROGRESS BELOW
 
 ```{r}
@@ -392,10 +397,7 @@ Master_Sheet_Total <- left_join(x = Total_VegCover_Combined_One_Col, y = Total_N
 
 ```
 
-
-
-Scraps____________
-
+Scraps\_\_\_\_\_\_\_\_\_\_\_\_
 
 ```{r mean data code format}
 
@@ -468,6 +470,3 @@ Master_Data_Frame <- bind_cols(Mean_Nitrate_Combined, Mean_VegCover_Combined)
 
 
 ```
-
-
-
