@@ -32,7 +32,7 @@ Chunk 2 ^^^
 
 ```{r load data sets}
 
-#In Chunk 3, we're loading all of the raw NEON data sets that we're going to be using in our project, as well as tagging each with an appropriate siteID (derived from the NEON site wherein the data was collected) and a year (derived from the year within which the data was collected). 
+#In Chunk 3, we're loading all of the raw NEON data sets that we're going to be using in our project, so that they're immediately accessible and available within the .rmd. Additionally, we're tagging each with an appropriate siteID (derived from the NEON site wherein the data was collected) and a year (derived from the year within which the data was collected). 
 
 # (Note: Each set of data is preceded by a textual title (example: #BIGC_2019) to facilitate any necessary navigation).
 
@@ -97,7 +97,7 @@ Chunk 3 ^^^
 
 ```{r Compile Data into Single Data Frame}
 
-#In Chunk 4, all of the extraneous data from the raw data sheets is being excised, and the data pertaining to our project is being consolidated into multiple formats for further manipulation. These are detailed in pre-code titles below, but generally speaking, we are creating a data frame containing all of the 'surfWaterNitrateMean' data from the Nitrate_Surfacewater NEON data sheets and a separate frame containing all of the 'canopyCoverPercent' data from the Cover_Veg_Riparian NEON data sheets (these will be used in the creation of two single-variable histograms). We're then creating mean data for each of these consolidated data frames (grouped by siteID and year) before finally left_joining these mean data to create a summarized master data frame.
+#In Chunk 4, all of the extraneous data from the raw data sheets is being excised, and the data pertaining to our project is being consolidated into multiple formats in order to facilitate further analysis and manipulation. These are detailed in pre-code titles below, but generally speaking, we are creating a data frame containing all of the 'surfWaterNitrateMean' data from the Nitrate_Surfacewater NEON data sheets and a separate frame containing all of the 'canopyCoverPercent' data from the Cover_Veg_Riparian NEON data sheets (these will be used in the creation of two single-variable histograms). We're then creating mean data for each of these consolidated data frames (grouped by siteID and year) before finally left_joining these mean data to create a summarized master data frame.
 
 
 #Nitrate Data Consolidation (Total, then mean surfWaterNitrateMean grouped by SiteID and year)
@@ -137,7 +137,7 @@ Chunk 4 ^^^
 
 ```{r Histogram}
 
-# In Chunk 5, we're using the data frames containing the compiled 'surfWaterNitrateMean' and 'canopyCoverPercent' columns to create two single-variable histograms, each representative of one of our two continuous variables (both our response and our predictor variable)
+# In Chunk 5, we're using the data frames containing the compiled 'surfWaterNitrateMean' and 'canopyCoverPercent' columns to create two single-variable histograms, each representative of one of our two continuous variables (both our response and our predictor variable). These histograms will give us a better understanding of the distribution of our variable values, which could help us to draw more accurate conclusions about the relationships we're observing down the line (as well as help us to explain any potential anomalies that arise).
 
 
 Total_Nitrate_Conc_Combined %>%
@@ -155,7 +155,7 @@ Chunk 5 ^^^
 
 ```{r Data Frame For Graphical Analysis}
 
-#In Chunk 6, we are creating data frames containing the summarized data necessary for visualization and analysis. (Note: Much of this code is the same as that contained in Chunk 4; for the purposes of our project, it made sense to summarize our data prior to compilation, and as such, much of it already exists in a grouped and summarized format).
+#In Chunk 6, we are creating data frames containing the summarized data necessary for visualization and analysis, specifically to facilitate the creation of figures by making all of the pertinent data immediately available in a single data frame. (Note: Much of this code is the same as that contained in Chunk 4; for the purposes of our project, it made sense to summarize our data prior to compilation, and as such, much of it already exists in a grouped and summarized format).
 
 Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE_2019, Nitrate_BLUE_2021, Nitrate_LECO_2019, Nitrate_LECO_2021)
 
