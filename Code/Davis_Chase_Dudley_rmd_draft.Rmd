@@ -14,12 +14,6 @@ Chunk 1 ^^^
 
 #In Chunk 2, we're loading in the packages necessary to manipulate and process our data for further analysis.
 
-install.packages("dplyr")
-install.packages("tidyr")
-install.packages("ggplot2")
-install.packages("readr")
-install.packages("lubridate")
-
 library(dplyr)
 library(tidyr)
 library(ggplot2)
@@ -106,7 +100,7 @@ Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE
 Mean_Nitrate_Combined <- Nitrate_Combined %>% 
   drop_na() %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean))
+  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean), standard_error = sd(surfWaterNitrateMean/sqrt(n())))
 
 
 #VegCover Data Consolidation (Total, then mean canopyCoverPercent grouped by SiteID and year)
@@ -114,7 +108,7 @@ VegCover_Combined <- bind_rows(VegCover_BIGC_2019, VegCover_BIGC_2021, VegCover_
 
 Mean_VegCover_Combined <- VegCover_Combined %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_veg_cover = mean(canopyCoverPercent))
+  summarize(mean_veg_cover = mean(canopyCoverPercent), standard_error = sd(canopyCoverPercent/sqrt(n())))
 
 
 #Summary Data Frame (with corresponding mean values)
@@ -164,7 +158,7 @@ Nitrate_Combined <- bind_rows(Nitrate_BIGC_2019, Nitrate_BIGC_2021, Nitrate_BLUE
 Mean_Nitrate_Combined <- Nitrate_Combined %>% 
   drop_na() %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean))
+  summarize(mean_conc_nitrate = mean(surfWaterNitrateMean), standard_error = sd(surfWaterNitrateMean/sqrt(n())))
 
 
 #VegCover Data Consolidation (Total, then mean canopyCoverPercent grouped by SiteID and year)
@@ -172,7 +166,7 @@ VegCover_Combined <- bind_rows(VegCover_BIGC_2019, VegCover_BIGC_2021, VegCover_
 
 Mean_VegCover_Combined <- VegCover_Combined %>% 
   group_by(siteID, year) %>% 
-  summarize(mean_veg_cover = mean(canopyCoverPercent))
+  summarize(mean_veg_cover = mean(canopyCoverPercent), standard_error = sd(canopyCoverPercent/sqrt(n())))
 
 
 #Summary Data Frame (with corresponding mean values)
@@ -188,8 +182,18 @@ Chunk 6 ^^^
 Master_Data_Frame %>%
   drop_na()%>%
   group_by(siteID, year)%>%
-  ggplot(aes(x=mean_veg_cover, y=mean_conc_nitrate, fill = siteID))+
-  geom_col(position="dodge")
+  ggplot(aes(x=siteID, y=mean_conc_nitrate, fill = siteID))+
+  geom_col(position="dodge")+
+  geom_errorbar(aes(ymin = mean_conc_nitrate - standard_error, ymax = mean_conc_nitrate + standard_error), width = .2)+
+  facet_wrap("year")
+
+Master_Data_Frame %>%
+  drop_na()%>%
+  group_by(siteID, year)%>%
+  ggplot(aes(x=siteID, y=mean_veg_cover, fill = siteID))+
+  geom_col(position="dodge")+
+  geom_errorbar(aes(ymin = mean_veg_cover - standard_error, ymax = mean_veg_cover + standard_error), width = .2)+
+  facet_wrap("year")
 
 #Scatter Plot
 Master_Data_Frame %>%
