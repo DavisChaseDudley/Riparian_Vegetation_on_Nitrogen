@@ -1,0 +1,303 @@
+---
+title: "GP"
+author: "Jack D'Antonio"
+date: "2023-03-29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(lubridate)
+```
+
+
+
+
+
+
+{Insert Name} <-read_csv("../Data/Processed/FILE_NAME_FOR_SITE/FILE_NAME_FOR_DATA_TYPE/EXCEL_SHEET_NAME.csv")
+
+
+```{r Code Template}
+Nitrate_BIGC <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
+VegCover_BIGC <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+
+Chase's Stuff
+
+
+
+
+Code Template Bank Below__________________________
+
+Code Template:
+
+{Insert Name} \<-read_csv("../Data/Processed/FILE_NAME_FOR_SITE/FILE_NAME_FOR_DATA_TYPE/EXCEL_SHEET_NAME.csv")
+
+```{r Code Template}
+
+Nitrate_BIGC_2019 <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
+
+VegCover_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
+
+CompStruct_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_comp-struct-riparian/NEON.D17.BIGC.DP1.20275.001.rip_assessment.2019-07.basic.20221128T182237Z.csv")
+
+ChemSurf_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_chem-surfacewater/NEON.D17.BIGC.DP1.20093.001.swc_externalLabDataByAnalyte.2019-07.basic.20221215T171932Z.csv")
+
+```
+
+```{r data hub Nitrate and VegCover}
+
+#BIGC_2019
+
+Nitrate_BIGC_2019 <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
+
+VegCover_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
+
+
+#BIGC_2021
+
+Nitrate_BIGC_2021 <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2021-08.basic.20221201T175835Z.csv")
+
+VegCover_BIGC_2021 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2021-08.basic.20230112T001807Z.csv")
+
+
+#BLUE_2019
+
+Nitrate_BLUE_2019 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_nitrate-surfacewater/NEON.D11.BLUE.DP1.20033.001.112.100.015.NSW_15_minute.2019-06.basic.20221201T045009Z.csv")
+
+VegCover_BLUE_2019 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_cover-veg-riparian/NEON.D11.BLUE.DP1.20191.001.rip_percentComposition.2019-06.basic.20230112T002006Z.csv")
+
+
+#BLUE_2021
+
+Nitrate_BLUE_2021 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_nitrate-surfacewater/NEON.D11.BLUE.DP1.20033.001.112.100.015.NSW_15_minute.2021-06.basic.20221201T013159Z.csv")
+
+VegCover_BLUE_2021 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_cover-veg-riparian/NEON.D11.BLUE.DP1.20191.001.rip_percentComposition.2021-06.basic.20230112T002305Z.csv")
+
+
+#LECO_2019
+
+Nitrate_LECO_2019 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_nitrate-surfacewater/NEON.D07.LECO.DP1.20033.001.102.100.015.NSW_15_minute.2019-09.basic.20221208T002007Z.csv")
+
+VegCover_LECO_2019 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-veg-riparian/NEON.D07.LECO.DP1.20191.001.rip_percentComposition.2019-09.basic.20230112T001930Z.csv")
+
+
+#LECO_2021
+
+Nitrate_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_nitrate-surfacewater/NEON.D07.LECO.DP1.20033.001.112.100.015.NSW_15_minute.2021-09.basic.20221208T012753Z.csv")
+
+VegCover_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-veg-riparian/NEON.D07.LECO.DP1.20191.001.rip_percentComposition.2021-09.basic.20230112T002003Z.csv")
+
+
+```
+
+```{r mean data code format}
+
+NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
+
+
+Nitrate_BIGC_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
+
+
+Nitrate_BLUE_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
+
+
+Nitrate_BLUE_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
+
+
+Nitrate_LECO_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
+
+
+Nitrate_LECO_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
+
+
+VegCover_BIGC_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
+
+
+VegCover_BIGC_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
+
+
+VegCover_BLUE_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
+
+
+VegCover_BLUE_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
+
+
+VegCover_LECO_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
+
+
+VegCover_LECO_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+WORK IN PROGRESS BELOW
+
+```{r}
+
+Nitrate_BIGC_select_2019 <- Nitrate_BIGC_2019 %>% 
+  select(surfWaterNitrateMean)
+
+VegCover_BIGC_select_2019 <- VegCover_BIGC_2019 %>% 
+  select(canopyCoverPercent)
+
+Nitrate_BIGC_select_2021 <- Nitrate_BIGC_2021 %>% 
+  select(surfWaterNitrateMean)
+
+VegCover_BIGC_select_2021 <- VegCover_BIGC_2021 %>% 
+  select(canopyCoverPercent)
+
+Nitrate_BLUE_select_2019 <- Nitrate_BLUE_2019 %>% 
+  select(surfWaterNitrateMean)
+
+VegCover_BLUE_select_2019 <- VegCover_BLUE_2019 %>% 
+  select(canopyCoverPercent)
+
+Nitrate_BLUE_select_2021 <- Nitrate_BLUE_2021 %>% 
+  select(surfWaterNitrateMean)
+
+VegCover_BLUE_select_2021 <- VegCover_BLUE_2021 %>% 
+  select(canopyCoverPercent)
+
+Nitrate_LECO_select_2019 <- Nitrate_LECO_2019 %>% 
+  select(surfWaterNitrateMean)
+
+VegCover_LECO_select_2019 <- VegCover_LECO_2019 %>% 
+  select(canopyCoverPercent)
+
+Nitrate_LECO_select_2021 <- Nitrate_LECO_2021 %>% 
+  select(surfWaterNitrateMean)
+
+VegCover_LECO_select_2021 <- VegCover_LECO_2021 %>% 
+  select(canopyCoverPercent)
+
+
+Total_VegCover_Combined <- bind_cols(VegCover_BIGC_select_2019, VegCover_BIGC_select_2021, VegCover_BLUE_select_2019, VegCover_BLUE_select_2021, VegCover_LECO_select_2019, VegCover_LECO_select_2021)
+
+Total_VegCover_Combined_One_Col <- bind_rows(VegCover_BIGC_select_2019, VegCover_BIGC_select_2021, VegCover_BLUE_select_2019, VegCover_BLUE_select_2021, VegCover_LECO_select_2019, VegCover_LECO_select_2021)
+
+Total_Nitrate_Combined_One_Col <- bind_rows(Nitrate_BIGC_select_2019, Nitrate_BIGC_select_2021, Nitrate_BLUE_select_2019, Nitrate_BLUE_select_2021, Nitrate_LECO_select_2019, Nitrate_LECO_select_2021)
+
+Master_Sheet_Total <- left_join(x = Total_VegCover_Combined_One_Col, y = Total_Nitrate_Combined_One_Col)
+
+```
+
+Scraps\_\_\_\_\_\_\_\_\_\_\_\_
+
+```{r mean data code format}
+
+NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
+
+
+NBIGC2021Mean <- Nitrate_BIGC_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
+
+
+NBLUE2019Mean <- Nitrate_BLUE_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
+
+
+NBLUE2021Mean <- Nitrate_BLUE_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
+
+
+NLECO2019Mean <- Nitrate_LECO_2019 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
+
+
+NLECO2021Mean <- Nitrate_LECO_2021 %>%
+  drop_na(surfWaterNitrateMean) %>% 
+  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
+
+
+VBIGC2019Mean <- VegCover_BIGC_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
+
+
+VBIGC2021Mean <- VegCover_BIGC_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
+
+
+VBLUE2019Mean <- VegCover_BLUE_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
+
+
+VBLUE2021Mean <- VegCover_BLUE_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
+
+
+VLECO2019Mean <- VegCover_LECO_2019 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
+
+
+VLECO2021Mean <- VegCover_LECO_2021 %>%
+  drop_na(canopyCoverPercent) %>% 
+  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
+
+
+
+Mean_Nitrate_Combined <- bind_rows(NBIGC2019Mean, NBIGC2021Mean, NBLUE2019Mean, NBLUE2021Mean, NLECO2019Mean, NLECO2021Mean)
+
+Mean_VegCover_Combined <- bind_rows(VBIGC2019Mean, VBIGC2021Mean, VBLUE2019Mean, VBLUE2021Mean, VLECO2019Mean, VLECO2021Mean)
+
+Master_Data_Frame <- bind_cols(Mean_Nitrate_Combined, Mean_VegCover_Combined)
+
+
+```

@@ -191,16 +191,16 @@ Master_Data_Frame %>%
 ```
 Chunk 7 ^^^
 
-Figure 1: 
+Figure 1: This scatter-plot, fit with a red trendline, shows the inverse relationship between the mean percentage of vegetative cover (mean_veg_cover along the x-axis) and the mean nitrate concentration (mean_conc_nitrate along the y-axis) across three different NEON sites, each tested twice across a two-year period. 
 
 
 
-```{r Rough Draft Graphs}
+```{r Visualizations 2 and 3: Bar Plots}
 
 #In Chunk 8, we're visualizing our data using two separate bar-plots. The first represents the mean nitrate concentration (mean_conc_nitrate) separated by siteID (distinguishable by color) and faceted by year. The second represents the mean vegetation percent coverage (mean_veg_cover), also separated by siteID and faceted by year. These graphs are meant to provide an easily-interpreted visual for each respective measure to i) supplement our analysis and interpretation of our project data and ii) to provide a standard visual of the collected data for potential readers.
 
 
-#Bar Graph
+# Mean Nitrate Concentration by Site Bar Graph (Figure 2)
 Master_Data_Frame %>%
   drop_na()%>%
   group_by(siteID, year)%>%
@@ -209,6 +209,7 @@ Master_Data_Frame %>%
   geom_errorbar(aes(ymin = mean_conc_nitrate - standard_error_N, ymax = mean_conc_nitrate + standard_error_N), width = .2)+
   facet_wrap("year")
 
+#Mean Vegetation Cover Percentage by Site Bar Graph (Figure 3)
 Master_Data_Frame %>%
   drop_na()%>%
   group_by(siteID, year)%>%
@@ -221,282 +222,33 @@ Master_Data_Frame %>%
 ```
 Chunk 8 ^^^
 
-Figure 2:
+Figure 2: This Bar plot represents the mean concentration of nitrate in surface water across three field sites (BIGC, BLUE, and LECO) in 2019 and 2021. The fill color of each bar correlates with a respective field site, and each bar includes an error bar of one standard error. Across both years, BIGC had the lowest mean nitrate concentration, whereas BLUE had the highest mean nitrate concentration.
+
+Figure 3: This Bar plot represents the mean vegetation cover percentage across three field sites (BIGC, BLUE, and LECO) in 2019 and 2021. The fill color of each bar correlates with a respective field site, and each bar includes an error bar of one standard error. Across both years, BIGC and LECO had nearly-identical mean vegetation cover percentages (with LECO slightly leading in both instances), whereas BLUE consistently had the lowest mean vegetation cover percentage. 
 
 
-```{r tests}
-#ANOVA
 
-ANOVA_Model <- aov(mean_conc_nitrate~mean_veg_cover, data = Master_Data_Frame)
-summary(ANOVA_Model)
+```{r Statistical Analysis}
+
+#In Chunk 9, we're conducting a statistical analysis (specifically, a linear regression with an additional correlation value calculation) of our primary figure, the scatter-plot equipped with a trendline constructed in Chunk 7. We've done this both to determine whether or not there was a statistically-significant relationship between vegetation coverage percentage (as a proxy for density) and water nitrate concentration and to determine whether or not the conduct of our research met the assumptions for a regression test.
+
 
 #Linear Model
-
 Linear_Model <- lm(mean_conc_nitrate~mean_veg_cover, data = Master_Data_Frame)
 summary(Linear_Model)
 plot(Linear_Model)
 
-```
-
-
-
-
-
-
-
-
-
-Code Template Bank Below__________________________
-
-Code Template:
-
-{Insert Name} \<-read_csv("../Data/Processed/FILE_NAME_FOR_SITE/FILE_NAME_FOR_DATA_TYPE/EXCEL_SHEET_NAME.csv")
-
-```{r Code Template}
-
-Nitrate_BIGC_2019 <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
-
-VegCover_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
-
-CompStruct_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_comp-struct-riparian/NEON.D17.BIGC.DP1.20275.001.rip_assessment.2019-07.basic.20221128T182237Z.csv")
-
-ChemSurf_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_chem-surfacewater/NEON.D17.BIGC.DP1.20093.001.swc_externalLabDataByAnalyte.2019-07.basic.20221215T171932Z.csv")
+#Additional Resource: Correlation Value
+cor(x = Master_Data_Frame$mean_veg_cover, y = Master_Data_Frame$mean_conc_nitrate)
 
 ```
+Chunk 9 ^^^
 
-```{r data hub Nitrate and VegCover}
 
-#BIGC_2019
+The statistical analysis of our primary figure, a scatter-plot fit with a linear trendline, tested i) whether or not there was a statistically-significant relationship between vegetation coverage percentage (as a proxy for density) and water nitrate concentration, and ii) whether or not the conduct of our research met the assumptions for a regression test. The statistical analyses determined that there is a statistically significant (but minor) negative correlation with a p-value of 0.01 (such that, as mean vegetation cover percentage increased, mean nitrate concentration decreased). The analysis also evidenced, however, that the conduct of our analysis failed to meet the assumptions of a regression test, specifically in that neither the Residuals vs. Fitted Plot relationship or the Scale-Location Plot demonstrated the 'flat-line relationship' expected of data meeting the regression line assumptions (though, interestingly enough, the Q-Q Plot was relatively sound). Here, we make note of these assumption violations and move on with our analysis. 
 
-Nitrate_BIGC_2019 <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2019-07.basic.20221201T190523Z.csv")
 
-VegCover_BIGC_2019 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2019-07.basic.20230112T002213Z.csv")
 
 
-#BIGC_2021
 
-Nitrate_BIGC_2021 <-read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_nitrate-surfacewater/NEON.D17.BIGC.DP1.20033.001.102.100.015.NSW_15_minute.2021-08.basic.20221201T175835Z.csv")
 
-VegCover_BIGC_2021 <- read_csv("../Data/Processed/BIGC (CA-D17)/BIGC_NEON_cover-veg-riparian/NEON.D17.BIGC.DP1.20191.001.rip_percentComposition.2021-08.basic.20230112T001807Z.csv")
-
-
-#BLUE_2019
-
-Nitrate_BLUE_2019 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_nitrate-surfacewater/NEON.D11.BLUE.DP1.20033.001.112.100.015.NSW_15_minute.2019-06.basic.20221201T045009Z.csv")
-
-VegCover_BLUE_2019 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_cover-veg-riparian/NEON.D11.BLUE.DP1.20191.001.rip_percentComposition.2019-06.basic.20230112T002006Z.csv")
-
-
-#BLUE_2021
-
-Nitrate_BLUE_2021 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_nitrate-surfacewater/NEON.D11.BLUE.DP1.20033.001.112.100.015.NSW_15_minute.2021-06.basic.20221201T013159Z.csv")
-
-VegCover_BLUE_2021 <-read_csv("../Data/Processed/BLUE (OK-D11)/BLUE_NEON_cover-veg-riparian/NEON.D11.BLUE.DP1.20191.001.rip_percentComposition.2021-06.basic.20230112T002305Z.csv")
-
-
-#LECO_2019
-
-Nitrate_LECO_2019 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_nitrate-surfacewater/NEON.D07.LECO.DP1.20033.001.102.100.015.NSW_15_minute.2019-09.basic.20221208T002007Z.csv")
-
-VegCover_LECO_2019 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-veg-riparian/NEON.D07.LECO.DP1.20191.001.rip_percentComposition.2019-09.basic.20230112T001930Z.csv")
-
-
-#LECO_2021
-
-Nitrate_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_nitrate-surfacewater/NEON.D07.LECO.DP1.20033.001.112.100.015.NSW_15_minute.2021-09.basic.20221208T012753Z.csv")
-
-VegCover_LECO_2021 <-read_csv("../Data/Processed/LECO (TN-D07)/LECO_NEON_cover-veg-riparian/NEON.D07.LECO.DP1.20191.001.rip_percentComposition.2021-09.basic.20230112T002003Z.csv")
-
-
-```
-
-```{r mean data code format}
-
-NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
-
-
-Nitrate_BIGC_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
-
-
-Nitrate_BLUE_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
-
-
-Nitrate_BLUE_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
-
-
-Nitrate_LECO_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
-
-
-Nitrate_LECO_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
-
-
-VegCover_BIGC_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
-
-
-VegCover_BIGC_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
-
-
-VegCover_BLUE_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
-
-
-VegCover_BLUE_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
-
-
-VegCover_LECO_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
-
-
-VegCover_LECO_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
-
-
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-WORK IN PROGRESS BELOW
-
-```{r}
-
-Nitrate_BIGC_select_2019 <- Nitrate_BIGC_2019 %>% 
-  select(surfWaterNitrateMean)
-
-VegCover_BIGC_select_2019 <- VegCover_BIGC_2019 %>% 
-  select(canopyCoverPercent)
-
-Nitrate_BIGC_select_2021 <- Nitrate_BIGC_2021 %>% 
-  select(surfWaterNitrateMean)
-
-VegCover_BIGC_select_2021 <- VegCover_BIGC_2021 %>% 
-  select(canopyCoverPercent)
-
-Nitrate_BLUE_select_2019 <- Nitrate_BLUE_2019 %>% 
-  select(surfWaterNitrateMean)
-
-VegCover_BLUE_select_2019 <- VegCover_BLUE_2019 %>% 
-  select(canopyCoverPercent)
-
-Nitrate_BLUE_select_2021 <- Nitrate_BLUE_2021 %>% 
-  select(surfWaterNitrateMean)
-
-VegCover_BLUE_select_2021 <- VegCover_BLUE_2021 %>% 
-  select(canopyCoverPercent)
-
-Nitrate_LECO_select_2019 <- Nitrate_LECO_2019 %>% 
-  select(surfWaterNitrateMean)
-
-VegCover_LECO_select_2019 <- VegCover_LECO_2019 %>% 
-  select(canopyCoverPercent)
-
-Nitrate_LECO_select_2021 <- Nitrate_LECO_2021 %>% 
-  select(surfWaterNitrateMean)
-
-VegCover_LECO_select_2021 <- VegCover_LECO_2021 %>% 
-  select(canopyCoverPercent)
-
-
-Total_VegCover_Combined <- bind_cols(VegCover_BIGC_select_2019, VegCover_BIGC_select_2021, VegCover_BLUE_select_2019, VegCover_BLUE_select_2021, VegCover_LECO_select_2019, VegCover_LECO_select_2021)
-
-Total_VegCover_Combined_One_Col <- bind_rows(VegCover_BIGC_select_2019, VegCover_BIGC_select_2021, VegCover_BLUE_select_2019, VegCover_BLUE_select_2021, VegCover_LECO_select_2019, VegCover_LECO_select_2021)
-
-Total_Nitrate_Combined_One_Col <- bind_rows(Nitrate_BIGC_select_2019, Nitrate_BIGC_select_2021, Nitrate_BLUE_select_2019, Nitrate_BLUE_select_2021, Nitrate_LECO_select_2019, Nitrate_LECO_select_2021)
-
-Master_Sheet_Total <- left_join(x = Total_VegCover_Combined_One_Col, y = Total_Nitrate_Combined_One_Col)
-
-```
-
-Scraps\_\_\_\_\_\_\_\_\_\_\_\_
-
-```{r mean data code format}
-
-NBIGC2019Mean <- Nitrate_BIGC_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BIGC_2019 = mean(surfWaterNitrateMean))
-
-
-NBIGC2021Mean <- Nitrate_BIGC_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BIGC_2021 = mean(surfWaterNitrateMean))
-
-
-NBLUE2019Mean <- Nitrate_BLUE_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BLUE_2019 = mean(surfWaterNitrateMean))
-
-
-NBLUE2021Mean <- Nitrate_BLUE_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_BLUE_2021 = mean(surfWaterNitrateMean))
-
-
-NLECO2019Mean <- Nitrate_LECO_2019 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_LECO_2019 = mean(surfWaterNitrateMean))
-
-
-NLECO2021Mean <- Nitrate_LECO_2021 %>%
-  drop_na(surfWaterNitrateMean) %>% 
-  summarize(mean_conc_LECO_2021 = mean(surfWaterNitrateMean))
-
-
-VBIGC2019Mean <- VegCover_BIGC_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BIGC_2019 = mean(canopyCoverPercent))
-
-
-VBIGC2021Mean <- VegCover_BIGC_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BIGC_2021 = mean(canopyCoverPercent))
-
-
-VBLUE2019Mean <- VegCover_BLUE_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BLUE_2019 = mean(canopyCoverPercent))
-
-
-VBLUE2021Mean <- VegCover_BLUE_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_BLUE_2021 = mean(canopyCoverPercent))
-
-
-VLECO2019Mean <- VegCover_LECO_2019 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_LECO_2019 = mean(canopyCoverPercent))
-
-
-VLECO2021Mean <- VegCover_LECO_2021 %>%
-  drop_na(canopyCoverPercent) %>% 
-  summarize(mean_cover_perc_LECO_2021 = mean(canopyCoverPercent))
-
-
-
-Mean_Nitrate_Combined <- bind_rows(NBIGC2019Mean, NBIGC2021Mean, NBLUE2019Mean, NBLUE2021Mean, NLECO2019Mean, NLECO2021Mean)
-
-Mean_VegCover_Combined <- bind_rows(VBIGC2019Mean, VBIGC2021Mean, VBLUE2019Mean, VBLUE2021Mean, VLECO2019Mean, VLECO2021Mean)
-
-Master_Data_Frame <- bind_cols(Mean_Nitrate_Combined, Mean_VegCover_Combined)
-
-
-```
