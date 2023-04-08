@@ -244,7 +244,6 @@ cor(x = Master_Data_Frame$mean_veg_cover, y = Master_Data_Frame$mean_conc_nitrat
 ```
 Chunk 9 ^^^
 
-
 The statistical analysis of our primary figure, a scatter-plot fit with a linear trendline, tested i) whether or not there was a statistically-significant relationship between vegetation coverage percentage (as a proxy for density) and water nitrate concentration, and ii) whether or not the conduct of our research met the assumptions for a regression test. The statistical analyses determined that there is a statistically significant (but minor) negative correlation with a p-value of 0.01 (such that, as mean vegetation cover percentage increased, mean nitrate concentration decreased). The analysis also evidenced, however, that the conduct of our analysis failed to meet the assumptions of a regression test, specifically in that neither the Residuals vs. Fitted Plot relationship or the Scale-Location Plot demonstrated the 'flat-line relationship' expected of data meeting the regression line assumptions (though, interestingly enough, the Q-Q Plot was relatively sound). Here, we make note of these assumption violations and move on with our analysis. 
 
 
