@@ -165,12 +165,14 @@ Mean_Nitrate_Combined <- Nitrate_Combined %>%
 VegCover_Combined <- bind_rows(VegCover_BIGC_2019, VegCover_BIGC_2021, VegCover_BLUE_2019, VegCover_BLUE_2021, VegCover_LECO_2019, VegCover_LECO_2021)
 
 Mean_VegCover_Combined <- VegCover_Combined %>% 
-  group_by(siteID, year) %>% 
+  group_by(siteID, year) %>%
   summarize(mean_veg_cover = mean(canopyCoverPercent), standard_error_V = sd(canopyCoverPercent/sqrt(n())))
 
 
 #Summary Data Frame (with corresponding mean values)
-Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined)
+Master_Data_Frame <- left_join(Mean_Nitrate_Combined, Mean_VegCover_Combined) %>% 
+  rename(`Mean Nitrate Concentration` = mean_conc_nitrate) %>% 
+  rename(`Mean Canopy Cover Percentage` = mean_veg_cover)
 
 ```
 Chunk 6 ^^^
@@ -182,7 +184,7 @@ Chunk 6 ^^^
 
 #Scatter Plot
 Master_Data_Frame %>%
-  ggplot(aes(x=mean_veg_cover, y=mean_conc_nitrate))+
+  ggplot(aes(x=`Mean Canopy Cover Percentage`, y=`Mean Nitrate Concentration`))+
   geom_point()+
   geom_smooth(method ="lm", color = "red")+
   theme_classic()
@@ -204,18 +206,18 @@ Figure 1: This scatter-plot, fit with a red trendline, shows the inverse relatio
 Master_Data_Frame %>%
   drop_na()%>%
   group_by(siteID, year)%>%
-  ggplot(aes(x=siteID, y=mean_conc_nitrate, fill = siteID))+
+  ggplot(aes(x=siteID, y=`Mean Nitrate Concentration`, fill = siteID))+
   geom_col(position="dodge")+
-  geom_errorbar(aes(ymin = mean_conc_nitrate - standard_error_N, ymax = mean_conc_nitrate + standard_error_N), width = .2)+
+  geom_errorbar(aes(ymin = `Mean Nitrate Concentration` - standard_error_N, ymax = `Mean Nitrate Concentration` + standard_error_N), width = .2)+
   facet_wrap("year")
 
 #Mean Vegetation Cover Percentage by Site Bar Graph (Figure 3)
 Master_Data_Frame %>%
   drop_na()%>%
   group_by(siteID, year)%>%
-  ggplot(aes(x=siteID, y=mean_veg_cover, fill = siteID))+
+  ggplot(aes(x=siteID, y=`Mean Canopy Cover Percentage`, fill = siteID))+
   geom_col(position="dodge")+
-  geom_errorbar(aes(ymin = mean_veg_cover - standard_error_V, ymax = mean_veg_cover + standard_error_V), width = .2)+
+  geom_errorbar(aes(ymin = `Mean Canopy Cover Percentage` - standard_error_V, ymax = `Mean Canopy Cover Percentage` + standard_error_V), width = .2)+
   facet_wrap("year")
 
 
