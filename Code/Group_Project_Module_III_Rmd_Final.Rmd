@@ -236,12 +236,12 @@ Figure 3: This Bar plot represents the mean vegetation cover percentage across t
 
 
 #Linear Model
-Linear_Model <- lm(mean_conc_nitrate~mean_veg_cover, data = Master_Data_Frame)
+Linear_Model <- lm(`Mean Nitrate Concentration`~`Mean Canopy Cover Percentage`, data = Master_Data_Frame)
 summary(Linear_Model)
 plot(Linear_Model)
 
 #Additional Resource: Correlation Value
-cor(x = Master_Data_Frame$mean_veg_cover, y = Master_Data_Frame$mean_conc_nitrate)
+cor(x = Master_Data_Frame$`Mean Canopy Cover Percentage`, y = Master_Data_Frame$`Mean Nitrate Concentration`)
 
 ```
 Chunk 9 ^^^
